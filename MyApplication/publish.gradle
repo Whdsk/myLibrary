@@ -18,6 +18,15 @@ android {
         buildConfigField 'int', 'VERSION_CODE', "${versionCode}"
         buildConfigField 'String', 'VERSION_NAME', "\"${versionName}\""
     }
+    // Ensure source sets are configured correctly for publishing
+    publishing {
+        singleVariant("release") {
+            withSourcesJar()
+        }
+        singleVariant("debug") {
+            withSourcesJar()
+        }
+    }
 }
 
 // Because the components are created only during the afterEvaluate phase, you must
@@ -39,7 +48,7 @@ afterEvaluate {
             // Creates a Maven publication called “debug”.
             debug(MavenPublication) {
                 // Applies the component for the debug build variant.
-                from components.findByName('debug')
+                from components.findByName('release')
                 groupId = group + ".debug"
                 artifactId = artifact + "-debug"
                 version = versionName
