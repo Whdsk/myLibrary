@@ -1,7 +1,8 @@
 package com.example.jartolibrary;
 
 import android.content.Context;
-import android.support.annotation.Nullable;
+
+import androidx.annotation.Nullable;
 
 /**
  * author gaohangbo
